@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+// import {Route} from "react-router-dom";
 //import ClientForm from "../forms/ClientForm";
 import {addClientRequest,clientSearchRequest} from "../../actions/client";
 //import SearchClientForm from "../forms/SearchClientForm";
@@ -18,6 +19,7 @@ class ClientPage extends React.Component{
         return(
            <div>
                <h3>Search Clients</h3>
+               {/*<Route path="/clients/new" component={}/>*/}
            </div>
         );
     }
