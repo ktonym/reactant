@@ -17,7 +17,7 @@ class LoginPage extends Component{
                 <div className="login">
                 {/*<Row>
                     <Col span={6} offset={10}>*/}
-                        <h3>Please Login</h3>
+                    <h1><strong style={{color:'black'}}>bima</strong><i style={{color:'yellow'}}>pro</i></h1>
                         <LoginForm submit={this.submit}/>
                         <Link to="/forgot_password">Forgot Password?</Link>
                     {/*</Col>
