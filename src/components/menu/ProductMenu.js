@@ -8,12 +8,12 @@ const ProductMenu = () => (
         <Menu mode="horizontal" onClick={(e)=>{console.log('clicked on menu!',e)}}>
 
             <SubMenu title={<span><Icon type="bulb" />Action</span>}>
-                <Menu.Item key="add"><Icon type="plus"/>New</Menu.Item>
-                <Menu.Item key="list"><Icon type="database"/>List</Menu.Item>
+                <Menu.Item key="add"><Icon type="plus"/>Ajouter</Menu.Item>
+                <Menu.Item key="list"><Icon type="database"/>Liste</Menu.Item>
             </SubMenu>
             <SubMenu title={<span><Icon type="setting" />Settings</span>}>
-                <Menu.Item key="policy"><Icon type="solution"/>Policy</Menu.Item>
-                <Menu.Item key="claim"><Icon type="switcher"/>Claim</Menu.Item>
+                <Menu.Item key="policy"><Icon type="solution"/>Police</Menu.Item>
+                <Menu.Item key="claim"><Icon type="switcher"/>Sinitres</Menu.Item>
                 <Menu.Item key="care"><Icon type="medicine-box"/>Care</Menu.Item>
                 <Menu.Item key="finance"><Icon type="calculator"/>Finance</Menu.Item>
             </SubMenu>

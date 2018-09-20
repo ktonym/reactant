@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import { Layout } from "antd";
+import TransitionGroup from "react-transition-group";
+//import { Layout } from "antd";
 import LoginForm from "../forms/LoginForm";
 import {loginRequest} from "../../actions/auth";
 import './login.css';
@@ -19,7 +20,7 @@ class LoginPage extends Component{
                     <Col span={6} offset={10}>*/}
                     <h1><strong style={{color:'black'}}>bima</strong><i style={{color:'yellow'}}>pro</i></h1>
                         <LoginForm submit={this.submit}/>
-                        <Link to="/forgot_password">Forgot Password?</Link>
+                        <Link to="/forgot_password">Avez-vous oublié votre mot de passe?</Link>
                     {/*</Col>
                 </Row>*/}
                 </div>

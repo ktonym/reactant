@@ -61,15 +61,15 @@ class LoginForm extends Component{
 
                     <Form.Item validateStatus={errors.username ? "warning" : ""} help={errors.username}>
                         <Input name="username" onChange={this.onChange} value={data.username}
-                                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="nom d'utilisateur" />
                     </Form.Item>
                     <Form.Item validateStatus={errors.password ? "error" : ""} help={errors.password}>
                             <Input name="password" onChange={this.onChange} value={data.password}
-                                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="mot de passe" />
                     </Form.Item>
                     <Form.Item>
                         <Button className="login-form-button" type="primary" htmlType="submit">
-                            Log in
+                            S'identifier
                         </Button>
                     </Form.Item>
                 </Form>

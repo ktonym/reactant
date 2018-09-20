@@ -55,18 +55,18 @@ class HomePage extends Component{
                         </Menu.Item>
                         <Menu.Item key="6">
                             <Icon type="switcher" />
-                            <span>Claims</span>
+                            <span>Sinistres</span>
                             <Link to="/claims"/>
                         </Menu.Item>
                         <Menu.Item key="7">
                             <Icon type="shop" />
-                            <span>Products</span>
+                            <span>Produits</span>
                             <Link to="/products"/>
                         </Menu.Item>
                         { isAuthenticated &&
                             <Menu.Item key="logout">
                                 <Icon type="logout" />
-                                <span onClick={()=>logout()}>Logout</span>
+                                <span onClick={()=>logout()}>Déconnecter</span>
                             </Menu.Item>
                         }
                     </Menu>
