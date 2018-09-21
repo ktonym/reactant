@@ -1,20 +1,33 @@
 import React, {Component} from 'react';
-import {DatePicker, Form, Icon, Input, Modal} from "antd";
+import PropTypes from "prop-types";
+import {DatePicker, Form, Icon, Input, InputNumber, Modal, Switch} from "antd";
 
 const FormItem = Form.Item;
 
 class ProductForm extends Component{
     state = {
-        visible: false,
+        visible: true,
         data : {
             productId: null,
             name: null,
-            active: false,
-            activeFrom: new Date(),
+            active: true,
+            activeFrom: null,
             activeTo: null,
             ratePath: null
         },
         errors: {}
+    };
+
+    onSubmit = (e) => {
+        const errors = this.validate(this.state.data);
+        const {data} = this.state;
+        e.preventDefault();
+        this.setState({errors});
+        if(Object.keys(errors).length===0){
+            this.setState({visible: false}); //need to send this to the store
+            //this.props.loginFailed();
+            this.props.submit(data);
+        }
     };
 
     validate = data => {
@@ -33,30 +46,52 @@ class ProductForm extends Component{
         data: {...this.state.data,[e.target.name]: e.target.value}
     });
 
+    onToggle = (e) => this.setState({
+        data: {...this.state.data,[e.target.name]: e}
+    });
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.visible!==prevState.visible){
+            return { visible: nextProps.visible};
+        }
+        else return null;
+    }
+
     render(){
-        const {visible,data,errors} = this.state;
+        const {data,errors} = this.state;
+        const {visible} = this.props;
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 },
+            },
+        };
         return(
-            <Modal visible={visible} title="Client Details" okText="Save" onCancel={onCancel} onOk={onCreate}>
+            <Modal visible={visible} title="Client Details" okText="Save" onCancel={() => {this.props.history.push("/products")}} onOk={this.onSubmit}>
                 <Form layout="vertical">
-                    <FormItem validateStatus={errors.productId ? "warning" : ""} help={errors.productId}>
-                        <Input name="productId" onChange={this.onChange} value={data.productId}
+                    <FormItem {...formItemLayout} label="Identification" validateStatus={errors.productId ? "warning" : ""} help={errors.productId}>
+                        <InputNumber name="productId" disabled={true} value={data.productId}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Product Id" />
                     </FormItem>
-                    <FormItem >
+                    <FormItem {...formItemLayout} label="Nom">
                         <Input name="name" onChange={this.onChange} value={data.name}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Name" />
                     </FormItem>
-                    <FormItem >
-                        <Input name="active" onChange={this.onChange} value={data.active}
+                    <FormItem {...formItemLayout} label="Activé">
+                        <Switch name="active" onChange={(e)=>{console.log(e)}} value={data.active}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="active" />
                     </FormItem>
-                    <FormItem>
+                    <FormItem {...formItemLayout} label="Active from">
                         <DatePicker name="activeFrom" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeFrom}/>
                     </FormItem>
-                    <FormItem>
+                    <FormItem {...formItemLayout} label="Active to">
                         <DatePicker name="activeTo" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeTo}/>
                     </FormItem>
-                    <FormItem >
+                    <FormItem {...formItemLayout} label="Rate path">
                         <Input name="ratePath" onChange={this.onChange} value={data.ratePath}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Rate Path" />
                     </FormItem>
@@ -65,5 +100,10 @@ class ProductForm extends Component{
         );
     }
 }
+
+ProductForm.propTypes = {
+    submit: PropTypes.func.isRequired,
+    visible: PropTypes.bool.isRequired
+};
 
 export default ProductForm;
