@@ -10,6 +10,7 @@ import DashBoard from "./DashBoard";
 import ProductPage from "./ProductPage";
 import ClientMenu from "../menu/ClientMenu";
 import ProductMenu from "../menu/ProductMenu";
+import UnderwritingMenu from "../menu/UnderwritingMenu";
 
 const { Header, Sider, Content, Footer } = Layout;
 class HomePage extends Component{
@@ -40,17 +41,17 @@ class HomePage extends Component{
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Icon type="solution" />
-                            <span>Underwriting</span>
+                            <span>Contrats</span>
                             <Link to="/policies"/>
                         </Menu.Item>
                         <Menu.Item key="4">
                             <Icon type="calculator" />
-                            <span>Accounting</span>
+                            <span>Comptes</span>
                             <Link to="/accounting"/>
                         </Menu.Item>
                         <Menu.Item key="5">
                             <Icon type="medicine-box" />
-                            <span>Care</span>
+                            <span>Soins</span>
                             <Link to="/care"/>
                         </Menu.Item>
                         <Menu.Item key="6">
@@ -75,6 +76,7 @@ class HomePage extends Component{
                     <Header style={{ background: '#f1f1f1', padding: '20px', margin: '0 0' }}>
                         <Route path="/clients" component={ClientMenu}/>
                         <Route path="/products" component={ProductMenu}/>
+                        <Route path="/policies" component={UnderwritingMenu}/>
                         {/*{ isAuthenticated && <Button style={{marginLeft: 'auto'}} shape="circle" onClick={()=>logout()} icon="logout"/> }*/}
                         {/*{ isAuthenticated ? (<Icon className="avatar" type="door" onClick={()=>logout()}/>) : (<Link to="/login">Login</Link>)}*/}
 

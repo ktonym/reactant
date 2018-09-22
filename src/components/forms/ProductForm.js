@@ -85,7 +85,7 @@ class ProductForm extends Component{
                         <Switch name="active" onChange={(e)=>{console.log(e)}} value={data.active}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="active" />
                     </FormItem>
-                    <FormItem {...formItemLayout} label="Active from">
+                    <FormItem {...formItemLayout} label="Activé dès">
                         <DatePicker name="activeFrom" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeFrom}/>
                     </FormItem>
                     <FormItem {...formItemLayout} label="Active to">
