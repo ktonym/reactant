@@ -42,9 +42,12 @@ class ProductForm extends Component{
         data: {...this.state.data,[e.target.name]: e.target.value}
     });
 
-    onDateChange = (e) => this.setState({
+    onDateChange = (e) => {
+        console.log(e)
+    };
+        /*this.setState({
         data: {...this.state.data,[e.target.name]: e.target.value}
-    });
+        });*/
 
     onToggle = (e) => this.setState({
         data: {...this.state.data,[e.target.name]: e}
@@ -71,25 +74,25 @@ class ProductForm extends Component{
             },
         };
         return(
-            <Modal visible={visible} title="Client Details" okText="Save" onCancel={() => {this.props.history.push("/products")}} onOk={this.onSubmit}>
+            <Modal visible={visible} title="Détails du produit" cancelText="Annuler" okText="Enregistrer" onCancel={() => {this.props.history.push("/products")}} onOk={this.onSubmit}>
                 <Form layout="vertical">
-                    <FormItem {...formItemLayout} label="Identification" validateStatus={errors.productId ? "warning" : ""} help={errors.productId}>
+                    <FormItem {...formItemLayout} label="Identifiant" validateStatus={errors.productId ? "warning" : ""} help={errors.productId}>
                         <InputNumber name="productId" disabled={true} value={data.productId}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Product Id" />
                     </FormItem>
                     <FormItem {...formItemLayout} label="Nom">
                         <Input name="name" onChange={this.onChange} value={data.name}
-                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Name" />
+                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom descriptif du produit" />
                     </FormItem>
                     <FormItem {...formItemLayout} label="Activé">
                         <Switch name="active" onChange={(e)=>{console.log(e)}} value={data.active}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="active" />
                     </FormItem>
-                    <FormItem {...formItemLayout} label="Activé dès">
-                        <DatePicker name="activeFrom" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeFrom}/>
+                    <FormItem {...formItemLayout} label="Actif dès">
+                        <DatePicker name="activeFrom" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeFrom} placeholder="Sélectionner une date"/>
                     </FormItem>
-                    <FormItem {...formItemLayout} label="Active to">
-                        <DatePicker name="activeTo" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeTo}/>
+                    <FormItem {...formItemLayout} label="Actif à">
+                        <DatePicker name="activeTo" onChange={this.onDateChange} format="YYYY/MM/DD" value={data.activeTo} placeholder="Sélectionner une date"/>
                     </FormItem>
                     <FormItem {...formItemLayout} label="Rate path">
                         <Input name="ratePath" onChange={this.onChange} value={data.ratePath}

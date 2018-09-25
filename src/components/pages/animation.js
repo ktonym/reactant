@@ -1,4 +1,5 @@
-import {TweenMax,Elastic} from "gsap";
+import {TweenMax} from "gsap/TweenMax";
+import Elastic from "gsap";
 
 const duration = 2.5;
 
