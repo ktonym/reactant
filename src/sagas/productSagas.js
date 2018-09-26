@@ -13,9 +13,9 @@ export function* watchAddProduct() {
 
 export function* addProductSaga(action) {
     try {
-        yield console.log(action.product);
         debugger;
-        const product = yield call(api.product.add, action.product);
+        const product = yield call(api.product.add, action.data);
+        yield console.log(product);
         yield put(addProductSuccess(product));
         //yield put("ADD_CLIENT_SUCCESS", action);
     } catch (e){

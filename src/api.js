@@ -30,6 +30,12 @@ export default {
         getAll: () => axios.get("/bd/client/getAll").then(res => res.data),
         search: (query) => axios.get(`/bd/client/search?q=${query}`).then(res => res.data)
     },
+    policy:{
+        add: (policy) => axios.post("/bd/policy/create",policy).then(res => res.data),
+        update: (policy) => axios.post("/bd/policy/update",policy).then(res => res.data),
+        getAll: (page,size) => axios.get(`/bd/policy/findAll?page=${page}&size=${size}`).then(res => res.data),
+        search: (policyId) => axios.post("/bd/policy/findByPolicy",policyId).then(res => res.data)
+    },
     product: {
         add: (product) => axios.post("/bd/product/create",product).then(res => res.data),
         update: (product) => axios.post("/bd/product/update",product).then(res => res.data),
