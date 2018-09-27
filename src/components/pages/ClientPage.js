@@ -1,12 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-// import {Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 //import ClientForm from "../forms/ClientForm";
 import {addClientRequest,clientSearchRequest} from "../../actions/client";
+import ClientForm from "../forms/ClientForm";
 //import SearchClientForm from "../forms/SearchClientForm";
 
 class ClientPage extends React.Component{
+
+    state = {
+        formVisible: true
+    };
 
     submit = data => this.props.addClient(data);
     searchClient = query => this.props.clientSearch(query);
@@ -16,10 +21,12 @@ class ClientPage extends React.Component{
     };
 
     render(){
+        const {formVisible} = this.state;
+        const {match} = this.props;
         return(
            <div>
                <h3>Search Clients</h3>
-               {/*<Route path="/clients/new" component={}/>*/}
+               <Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />
            </div>
         );
     }

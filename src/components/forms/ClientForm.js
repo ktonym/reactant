@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button, Modal, Form, Input, Radio, Icon, DatePicker} from "antd";
 
 const FormItem = Form.Item;
 
 class ClientForm extends React.Component{
     state = {
-        visible : false,
+        visible : true,
         data: {
-            clientTypeId: 0,
+            clientTypeId: null,
             clientId: null,
             firstName: '',
             lastName: '',
@@ -16,6 +17,18 @@ class ClientForm extends React.Component{
             joinDate: new Date()
         },
         errors: {}
+    };
+
+    onSubmit = (e) => {
+        const errors = this.validate(this.state.data);
+        const {data} = this.state;
+        e.preventDefault();
+        this.setState({errors});
+        if(Object.keys(errors).length===0){
+            this.props.submit(data);
+            this.setState({visible: false}); //need to send this to the store
+            //this.props.addProductFailed();
+        }
     };
 
     validate = data => {
@@ -36,7 +49,7 @@ class ClientForm extends React.Component{
     render(){
         const {visible,data,errors} = this.state;
         return(
-            <Modal visible={visible} title="Client Details" okText="Save" onCancel={onCancel} onOk={onCreate}>
+            <Modal visible={visible} title="Client Details" okText="Save" onCancel={this.onCancel} onOk={this.onSubmit}>
                 <Form layout="vertical">
                     <FormItem validateStatus={errors.firstName ? "warning" : ""} help={errors.firstName}>
                         <Input name="firstName" onChange={this.onChange} value={data.firstName}
@@ -51,7 +64,7 @@ class ClientForm extends React.Component{
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Other name" />
                     </FormItem>
                     <FormItem validateStatus={errors.pin ? "error" : ""} help={errors.pin}>
-                        <Input name="password" onChange={this.onChange} value={data.pin}
+                        <Input name="pin" onChange={this.onChange} value={data.pin}
                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="PIN" />
                     </FormItem>
                     <FormItem>
@@ -62,5 +75,10 @@ class ClientForm extends React.Component{
         );
     }
 }
+
+ClientForm.propTypes = {
+    visible: PropTypes.func.isRequired,
+    submit: PropTypes.func.isRequired
+};
 
 export default ClientForm;
