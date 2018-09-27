@@ -14,6 +14,8 @@ import UnderwritingMenu from "../menu/UnderwritingMenu";
 import AccountingMenu from "../menu/AccountingMenu";
 import CareMenu from "../menu/CareMenu";
 import AccountingPage from "./AccountingPage";
+import ClaimsMenu from "../menu/ClaimsMenu";
+import ClaimsPage from "./ClaimsPage";
 
 const { Header, Sider, Content, Footer } = Layout;
 class HomePage extends Component{
@@ -82,6 +84,7 @@ class HomePage extends Component{
                         <Route path="/policies" component={UnderwritingMenu}/>
                         <Route path="/accounting" component={AccountingMenu}/>
                         <Route path="/care" component={CareMenu}/>
+                        <Route path="/claims" component={ClaimsMenu}/>
 
                         {/*{ isAuthenticated && <Button style={{marginLeft: 'auto'}} shape="circle" onClick={()=>logout()} icon="logout"/> }*/}
                         {/*{ isAuthenticated ? (<Icon className="avatar" type="door" onClick={()=>logout()}/>) : (<Link to="/login">Login</Link>)}*/}
@@ -92,6 +95,7 @@ class HomePage extends Component{
                         <Route path="/clients" component={ClientPage}/>
                         <Route path="/products" component={ProductPage}/>
                         <Route path="/accounting" component={AccountingPage}/>
+                        <Route path="/claims" component={ClaimsPage}/>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         ©2018 Rhino Infotech Limited
