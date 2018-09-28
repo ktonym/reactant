@@ -2,7 +2,7 @@ import { fork } from "redux-saga/effects";
 import {watchAddClient, watchSearchClient} from "./sagas/clientSagas";
 import {watchLogout, watchResetPassReq, watchValidateToken, watchChangePassword} from "./sagas/userSagas";
 import {watchLogin} from "./sagas/userSagas";
-import {watchAddProduct, watchSearchProduct} from "./sagas/productSagas";
+import {watchAddProduct, watchFetchProducts, watchSearchProduct} from "./sagas/productSagas";
 
 export default function* rootSaga () {
     yield fork(watchAddClient);
@@ -14,4 +14,5 @@ export default function* rootSaga () {
     yield fork(watchSearchClient);
     yield fork(watchAddProduct);
     yield fork(watchSearchProduct);
+    yield fork(watchFetchProducts);
 }

@@ -1,8 +1,15 @@
 import { call,put, takeLatest } from "redux-saga/effects";
-//import {normalize} from "normalizr";
+import {normalize} from "normalizr";
 import api from "../api";
-import {ADD_PRODUCT, PRODUCT_SEARCH} from "../types";
-import {addProductSuccess,addProductFailed, productSearchFailed, productSearchSuccess} from "../actions/product";
+import {ADD_PRODUCT, FETCH_PRODUCTS, PRODUCT_SEARCH} from "../types";
+import {
+    addProductSuccess,
+    addProductFailed,
+    productSearchFailed,
+    productSearchSuccess,
+    fetchProducts, productsFetched
+} from "../actions/product";
+import {productSchema} from "../schemas";
 //import {clientSchema} from "../schemas";
 
 
@@ -13,10 +20,8 @@ export function* watchAddProduct() {
 
 export function* addProductSaga(action) {
     try {
-        debugger;
-        const product = yield call(api.product.add, action.data);
-        yield console.log(product);
-        yield put(addProductSuccess(product));
+        const res = yield call(api.product.add, action.data);
+        yield put(addProductSuccess(normalize(res.data,productSchema)));
         //yield put("ADD_CLIENT_SUCCESS", action);
     } catch (e){
         //yield put({type: "ADD_CLIENT_FAILED", message:(e)});
@@ -31,8 +36,22 @@ export function* watchSearchProduct() {
 export function* searchProductSaga(action) {
     try{
         const products = yield call(api.product.search, action.query);
-        yield put(productSearchSuccess(products));
+        yield put(productSearchSuccess(normalize(products,[productSchema])));
     } catch (e){
+        yield put(productSearchFailed(e.response.data.errors));
+    }
+}
+
+export function* watchFetchProducts() {
+    yield takeLatest(FETCH_PRODUCTS, fetchProductsSaga);
+}
+
+export function* fetchProductsSaga(action) {
+    try {
+        const products = yield call(api.product.getAll);
+        yield put(productsFetched(normalize(products,[productSchema])));
+    } catch (e) {
+        //reusing productSearchFailed action!!
         yield put(productSearchFailed(e.response.data.errors));
     }
 }

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import {ADD_PRODUCT_FAILED, ADD_PRODUCT_SUCCESS,PRODUCT_SEARCH_SUCCESS} from "../types";
+import {ADD_PRODUCT_FAILED, ADD_PRODUCT_SUCCESS, PRODUCT_SEARCH_SUCCESS, PRODUCTS_FETCHED} from "../types";
 
 export default function (state = {}, action = {}) {
     switch (action.type){
@@ -9,6 +9,8 @@ export default function (state = {}, action = {}) {
             return { ...state, ...action.message };
         case PRODUCT_SEARCH_SUCCESS:
             return action.data;
+        case PRODUCTS_FETCHED:
+            return {...state, ...action.data.entities.products};
         default:
             return state;
     }

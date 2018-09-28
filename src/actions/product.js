@@ -1,6 +1,6 @@
 import {
     ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAILED, ADD_PRODUCT, PRODUCT_SEARCH, PRODUCT_SEARCH_SUCCESS,
-    PRODUCT_SEARCH_FAILED
+    PRODUCT_SEARCH_FAILED, FETCH_PRODUCTS, PRODUCTS_FETCHED
 } from "../types";
 
 export const addProductSuccess = (data) => ({
@@ -16,6 +16,16 @@ export const addProductFailed = errors => ({
 /*To be used in the form to request addProduct*/
 export const addProductRequest = (data) => ({
     type: ADD_PRODUCT,
+    data
+});
+
+export const fetchProducts = (data) => ({
+    type: FETCH_PRODUCTS,
+    data
+});
+ // data.entities.products
+export const productsFetched = (data) => ({
+    type: PRODUCTS_FETCHED,
     data
 });
 
