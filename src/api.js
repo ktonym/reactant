@@ -41,5 +41,11 @@ export default {
         update: (product) => axios.post("/bd/product/update",product).then(res => res.data),
         getAll: () => axios.get("/bd/product/findAll").then(res => res.data),
         search: (query) => axios.get(`/bd/product/search?q=${query}`).then(res => res.data)
+    },
+    setting: {
+        add: (setting) => axios.post("/bd/attribute/create",setting).then(res => res.data),
+        update: (setting) => axios.post("/bd/attribute/update",setting).then(res => res.data),
+        getAll: () => axios.get("/bd/attribute/findAll").then(res => res.data),
+        search: (productId) => axios.get("/bd/attribute/findByProduct",productId).then(res => res.data)
     }
 }

@@ -7,11 +7,10 @@ import {
     addProductFailed,
     productSearchFailed,
     productSearchSuccess,
-    fetchProducts, productsFetched
+    productsFetched
 } from "../actions/product";
 import {productSchema} from "../schemas";
 import customHistory from "../history";
-//import {clientSchema} from "../schemas";
 
 
 export function* watchAddProduct() {

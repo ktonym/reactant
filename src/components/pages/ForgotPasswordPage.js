@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {resetPassRequest} from "../../actions/auth";
 import ForgotPasswordForm from "../forms/ForgotPasswordForm";
-import { Spin } from "antd";
 import { openNotificationWithIcon } from "../Notifications";
 
 class ForgotPasswordPage extends React.Component{

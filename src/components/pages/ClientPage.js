@@ -2,10 +2,27 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
-//import ClientForm from "../forms/ClientForm";
 import {addClientRequest,clientSearchRequest} from "../../actions/client";
 import ClientForm from "../forms/ClientForm";
-//import SearchClientForm from "../forms/SearchClientForm";
+import ClientList from "./ClientList";
+import {allClientsSelector} from "../../reducers/clients";
+import moment from "moment";
+
+
+const data = [];
+
+for ( let i=0; i<10; i++){
+    data.push({
+        key: i,
+        clientTypeId: 1,
+        clientId: i,
+        firstName: ` first name${i}`,
+        lastName: ` last name${i}`,
+        otherName: ` other name${i}`,
+        pin: ` ABCD${i}`,
+        joinDate: moment.now
+    });
+}
 
 class ClientPage extends React.Component{
 
@@ -20,13 +37,18 @@ class ClientPage extends React.Component{
 
     };
 
+    onDelete = (data) => {
+        console.log(data);
+    };
+
     render(){
         const {formVisible} = this.state;
-        const {match} = this.props;
+        const {match,clients} = this.props;
         return(
            <div>
                <h3>Search Clients</h3>
                <Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />
+               <Route path={`${match.url}/list`} render={(props) => <ClientList onDelete={this.onDelete} clients={data}/> } />
            </div>
         );
     }
@@ -39,7 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    clients: state.clients.data
+    clients: allClientsSelector(state)
 });
 
 ClientPage.propTypes = {

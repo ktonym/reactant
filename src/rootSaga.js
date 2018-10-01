@@ -3,6 +3,7 @@ import {watchAddClient, watchSearchClient} from "./sagas/clientSagas";
 import {watchLogout, watchResetPassReq, watchValidateToken, watchChangePassword} from "./sagas/userSagas";
 import {watchLogin} from "./sagas/userSagas";
 import {watchAddProduct, watchFetchProducts, watchSearchProduct} from "./sagas/productSagas";
+import {watchAddSetting, watchFetchSetting} from "./sagas/settingSagas";
 
 export default function* rootSaga () {
     yield fork(watchAddClient);
@@ -15,4 +16,6 @@ export default function* rootSaga () {
     yield fork(watchAddProduct);
     yield fork(watchSearchProduct);
     yield fork(watchFetchProducts);
+    yield fork(watchAddSetting);
+    yield fork(watchFetchSetting);
 }

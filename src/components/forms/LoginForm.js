@@ -6,9 +6,9 @@ import { loginFailed } from "../../actions/auth";
 import "./LoginForm.css";
 
 // const FormItem = Form.Item;
-function hasErrors(fieldsError) {
+/*function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+}*/
 class LoginForm extends Component{
     state = {
         data: {
