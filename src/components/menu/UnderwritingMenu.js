@@ -5,7 +5,7 @@ import {Menu,Icon} from "antd";
 const SubMenu = Menu.SubMenu;
 const UnderwritingMenu = ({match}) => (
     <div>
-        <Menu mode="horizontal" onClick={(e)=>{console.log('clicked on menu!',e)}}>
+        <Menu mode="horizontal">
 
             <SubMenu title={<span><Icon type="bulb" />Souscription</span>}>
                 <Menu.Item key="add"><Link to={`${match.url}/new`}><Icon type="plus"/>Nouvelle</Link></Menu.Item>

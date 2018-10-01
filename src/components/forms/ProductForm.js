@@ -55,7 +55,7 @@ class ProductForm extends Component{
     };
 
     onToggle = (e) => this.setState({
-        data: {...this.state.data,[e.target.name]: e}
+        data: {...this.state.data,active: e}
     });
 
     static getDerivedStateFromProps(nextProps, prevState){
@@ -90,7 +90,7 @@ class ProductForm extends Component{
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom descriptif du produit" />
                     </FormItem>
                     <FormItem {...formItemLayout} label="Activé">
-                        <Switch name="active" onChange={(e)=>{console.log(e)}} value={data.active}
+                        <Switch name="active" onChange={this.onToggle} value={data.active}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="active" />
                     </FormItem>
                     <FormItem {...formItemLayout} label="Actif dès" validateStatus={errors.activeFrom ? "warning" : ""} help={errors.activeFrom}>

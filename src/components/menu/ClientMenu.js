@@ -4,7 +4,7 @@ import {Menu,Icon} from "antd";
 const SubMenu = Menu.SubMenu;
 const ClientMenu = () => (
     <div>
-        <Menu mode="horizontal" onClick={(e)=>{console.log('clicked on menu!',e)}}>
+        <Menu mode="horizontal">
             <SubMenu title={<span><Icon type="bulb" />Action</span>}>
                 <Menu.Item key="add"><Icon type="plus"/>New</Menu.Item>
                 <Menu.Item key="list"><Icon type="database"/>List</Menu.Item>

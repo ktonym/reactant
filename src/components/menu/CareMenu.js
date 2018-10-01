@@ -6,7 +6,7 @@ const SubMenu = Menu.SubMenu;
 const CareMenu = ({match}) => (
     <div>
 
-        <Menu mode="horizontal" onClick={(e)=>{console.log('clicked on menu!',e)}}>
+        <Menu mode="horizontal">
 
             <SubMenu title={<span><Link to={`${match.url}/preauth`}><Icon type="bulb" />Preautorisations</Link></span>}>
 

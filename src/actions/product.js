@@ -1,6 +1,6 @@
 import {
     ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAILED, ADD_PRODUCT, PRODUCT_SEARCH, PRODUCT_SEARCH_SUCCESS,
-    PRODUCT_SEARCH_FAILED, FETCH_PRODUCTS, PRODUCTS_FETCHED
+    PRODUCT_SEARCH_FAILED, FETCH_PRODUCTS, PRODUCTS_FETCHED, USER_LOGOUT
 } from "../types";
 
 export const addProductSuccess = (data) => ({
@@ -19,11 +19,10 @@ export const addProductRequest = (data) => ({
     data
 });
 
-export const fetchProducts = (data) => ({
-    type: FETCH_PRODUCTS,
-    data
+export const fetchProducts = () => ({
+    type: FETCH_PRODUCTS
 });
- // data.entities.products
+// data.entities.products
 export const productsFetched = (data) => ({
     type: PRODUCTS_FETCHED,
     data

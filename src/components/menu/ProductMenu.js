@@ -6,7 +6,7 @@ const SubMenu = Menu.SubMenu;
 const ProductMenu = ({match}) => (
     <div>
 
-        <Menu mode="horizontal" onClick={(e)=>{console.log('clicked on menu!',e)}}>
+        <Menu mode="horizontal">
 
             <SubMenu title={<span><Icon type="bulb" />Action</span>}>
                 <Menu.Item key="add"><Link to={`${match.url}/new`}><Icon type="plus"/>Ajouter</Link></Menu.Item>

@@ -10,6 +10,7 @@ import {
     fetchProducts, productsFetched
 } from "../actions/product";
 import {productSchema} from "../schemas";
+import customHistory from "../history";
 //import {clientSchema} from "../schemas";
 
 
@@ -22,6 +23,7 @@ export function* addProductSaga(action) {
     try {
         const res = yield call(api.product.add, action.data);
         yield put(addProductSuccess(normalize(res.data,productSchema)));
+        customHistory.push("/products");
         //yield put("ADD_CLIENT_SUCCESS", action);
     } catch (e){
         //yield put({type: "ADD_CLIENT_FAILED", message:(e)});
@@ -46,10 +48,10 @@ export function* watchFetchProducts() {
     yield takeLatest(FETCH_PRODUCTS, fetchProductsSaga);
 }
 
-export function* fetchProductsSaga(action) {
+export function* fetchProductsSaga() {
     try {
-        const products = yield call(api.product.getAll);
-        yield put(productsFetched(normalize(products,[productSchema])));
+        const res = yield call(api.product.getAll);
+        yield put(productsFetched(normalize(res.data,[productSchema])));
     } catch (e) {
         //reusing productSearchFailed action!!
         yield put(productSearchFailed(e.response.data.errors));

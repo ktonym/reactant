@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link,Route} from "react-router-dom";
-import { Layout, Menu, Icon, Button } from "antd";
+import { Layout, Menu, Icon } from "antd";
 import {logoutRequest} from "../../actions/auth";
 import "./HomePage.css";
 import ClientPage from "./ClientPage";
