@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, Modal, Form, Input, Radio, Icon, DatePicker} from "antd";
+import moment from "moment";
 
 const FormItem = Form.Item;
 
@@ -42,9 +43,11 @@ class ClientForm extends React.Component{
         data: {...this.state.data,[e.target.name]: e.target.value}
     });
 
-    onDateChange = (e) => this.setState({
-        data: {...this.state.data,[e.target.name]: e.target.value}
-    });
+    onDateChange = (value) => {
+        this.setState({
+            data: {...this.state.data,joinDate: moment(value)}
+        });
+    };
 
     render(){
         const {visible,data,errors} = this.state;

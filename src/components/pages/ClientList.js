@@ -13,7 +13,7 @@ const ClientList = ({onSelect,clients,onDelete}) => {
         { title: 'Join Date', dataIndex: 'joinDate'},
         { title: 'Actions', render: (text,record) => {
                 return(
-                    <Popconfirm title="Voulez-vous supprimer cet enregistrement?" onConfirm={()=> onDelete(record.id)}>
+                    <Popconfirm title="Voulez-vous supprimer cet enregistrement?" onConfirm={()=> onDelete(record)}>
                         <Button>Supprimer</Button>
                     </Popconfirm>
                 );
