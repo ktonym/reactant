@@ -3,15 +3,16 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
 import {addClientRequest,clientSearchRequest} from "../../actions/client";
-import ClientForm from "../forms/ClientForm";
+/*import ClientForm from "../forms/ClientForm";*/
 import ClientList from "./ClientList";
 import {allClientsSelector} from "../../reducers/clients";
 import moment from "moment";
+import ClientSteps from "./ClientSteps";
 
 
 const data = [];
 
-for ( let i=0; i<10; i++){
+for ( let i=0; i<5; i++){
     data.push({
         key: i,
         clientTypeId: 1,
@@ -46,8 +47,10 @@ class ClientPage extends React.Component{
         const {match,clients} = this.props;
         return(
            <div>
-               <h3>Search Clients</h3>
-               <Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />
+               {/*<h3>Search Clients</h3>*/}
+               <br/>
+               <Route path={`${match.url}/add`} render={(props) => <ClientSteps {...props} visible={formVisible} submit={this.submit}/>} />
+               {/*<Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />*/}
                <Route path={`${match.url}/list`} render={(props) => <ClientList onDelete={this.onDelete} clients={data}/> } />
            </div>
         );

@@ -51,30 +51,41 @@ class ClientForm extends React.Component{
 
     render(){
         const {visible,data,errors} = this.state;
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 },
+            },
+        };
         return(
-            <Modal visible={visible} title="Client Details" okText="Save" onCancel={this.onCancel} onOk={this.onSubmit}>
+            <div>
                 <Form layout="vertical">
-                    <FormItem validateStatus={errors.firstName ? "warning" : ""} help={errors.firstName}>
+                    <FormItem {...formItemLayout} validateStatus={errors.firstName ? "warning" : ""} help={errors.firstName}>
                         <Input name="firstName" onChange={this.onChange} value={data.firstName}
-                                     prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="First name" />
+                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Prénom / Nom de l'entreprise" />
                     </FormItem>
-                    <FormItem >
+                    <FormItem {...formItemLayout} >
                         <Input name="lastName" onChange={this.onChange} value={data.lastName}
-                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Last name" />
+                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom" />
                     </FormItem>
-                    <FormItem >
+                    <FormItem {...formItemLayout} >
                         <Input name="otherName" onChange={this.onChange} value={data.otherName}
-                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Other name" />
-                    </FormItem>
-                    <FormItem validateStatus={errors.pin ? "error" : ""} help={errors.pin}>
+                               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Autres nom(s)" />
+                    </FormItem >
+                    <FormItem {...formItemLayout} validateStatus={errors.pin ? "error" : ""} help={errors.pin}>
                         <Input name="pin" onChange={this.onChange} value={data.pin}
                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="PIN" />
                     </FormItem>
-                    <FormItem>
-                        <DatePicker name="joinDate" onChange={this.onDateChange} format="YYYY/MM/DD" />
+                    <FormItem {...formItemLayout} >
+                        <DatePicker name="joinDate" onChange={this.onDateChange} format="YYYY/MM/DD" placeholder="Date d'entrée"/>
                     </FormItem>
                 </Form>
-            </Modal>
+            </div>
+
         );
     }
 }
