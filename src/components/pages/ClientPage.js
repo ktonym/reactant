@@ -8,11 +8,12 @@ import ClientList from "./ClientList";
 import {allClientsSelector} from "../../reducers/clients";
 import moment from "moment";
 import ClientSteps from "./ClientSteps";
+import ClientTypeForm from "../forms/ClientTypeForm";
 
 
 const data = [];
 
-for ( let i=0; i<5; i++){
+for ( let i=0; i<3; i++){
     data.push({
         key: i,
         clientTypeId: 1,
@@ -51,7 +52,8 @@ class ClientPage extends React.Component{
                <br/>
                <Route path={`${match.url}/add`} render={(props) => <ClientSteps {...props} visible={formVisible} submit={this.submit}/>} />
                {/*<Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />*/}
-               <Route path={`${match.url}/list`} render={(props) => <ClientList onDelete={this.onDelete} clients={data}/> } />
+               <Route path={`${match.url}/list`} render={(props) => <ClientList {...props} onDelete={this.onDelete} clients={data}/> } />
+               <Route path={`${match.url}/type/new`} render={(props) => <ClientTypeForm {...props} visible={formVisible} /> } />
            </div>
         );
     }

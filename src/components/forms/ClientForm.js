@@ -2,8 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Modal, Form, Input, Radio, Icon, DatePicker} from "antd";
 import moment from "moment";
+import styled from "styled-components";
 
 const FormItem = Form.Item;
+const Container = styled.div`
+    margin: 10px auto;
+    padding: 20 20;
+`;
 
 class ClientForm extends React.Component{
     state = {
@@ -62,7 +67,8 @@ class ClientForm extends React.Component{
             },
         };
         return(
-            <div>
+            <Container>
+                <h3>Saisissez les details</h3>
                 <Form layout="vertical">
                     <FormItem {...formItemLayout} validateStatus={errors.firstName ? "warning" : ""} help={errors.firstName}>
                         <Input name="firstName" onChange={this.onChange} value={data.firstName}
@@ -84,7 +90,7 @@ class ClientForm extends React.Component{
                         <DatePicker name="joinDate" onChange={this.onDateChange} format="YYYY/MM/DD" placeholder="Date d'entrée"/>
                     </FormItem>
                 </Form>
-            </div>
+            </Container>
 
         );
     }

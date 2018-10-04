@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import styled from "styled-components";
 import { Steps, Button, message } from 'antd';
 import ClientForm from "../forms/ClientForm";
 
@@ -6,6 +7,9 @@ const Step = Steps.Step;
 const steps = [{title:'Sélectionnez le type de client',content: 'Client type selection'},
     {title:'Saisissez les details', content: <ClientForm/>},
     {title: 'Complete',content: 'Last Page'}];
+const Container = styled.div`
+    margin: 5 10em;
+`;
 class ClientSteps extends Component{
     state = {
         current: 0
@@ -23,7 +27,7 @@ class ClientSteps extends Component{
     render(){
         const {current} = this.state;
         return (
-            <div style={{ leftPadding: '10px', topPadding: '20px' }}>
+            <Container>
                 <Steps current={current}>
                     {steps.map(item => <Step key={item.title} title={item.title}/>)}
                 </Steps>
@@ -42,7 +46,7 @@ class ClientSteps extends Component{
                         && (<Button style={{marginLeft: 8}} onClick={this.prev}>Précédent</Button>)
                     }
                 </div>
-            </div>
+            </Container>
         );
     }
 }
