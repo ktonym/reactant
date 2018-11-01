@@ -25,6 +25,8 @@ if(localStorage.rhinoJWT){
     store.dispatch(loginSuccess(user));
 }
 
+document.title = "Bima Pro";
+
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(

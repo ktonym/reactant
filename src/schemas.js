@@ -5,7 +5,7 @@ export const productSchema = new schema.Entity(
 );
 
 export const clientTypeSchema = new schema.Entity(
-    "clientTypes",{},{idAttribute:"clientTypeId"}
+    "clienttypes",{},{idAttribute:"clientTypeId"}
 );
 
 export const clientSchema = new schema.Entity(

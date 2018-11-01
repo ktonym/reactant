@@ -52,7 +52,7 @@ class ClientTypeForm extends Component{
             <Modal visible={visible} title="Client Type Details" okText="Save" onCancel={this.onCancel} onOk={this.onSubmit}>
                 <Form layout="vertical">
                     <FormItem label="Name" {...formItemLayout} validateStatus={errors.description ? "warning" : ""} help={errors.description}>
-                        <Input name="firstName" onChange={this.onChange} value={data.description}
+                        <Input name="description" onChange={this.onChange} value={data.description}
                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Description" />
                     </FormItem>
                 </Form>
@@ -62,6 +62,7 @@ class ClientTypeForm extends Component{
 };
 
 ClientTypeForm.propTypes = {
+    submit: PropTypes.func.isRequired,
     visible: PropTypes.func.isRequired
 };
 export default ClientTypeForm;
