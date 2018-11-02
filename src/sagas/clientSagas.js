@@ -19,7 +19,7 @@ export function* watchAddClient() {
 
 export function* addClientSaga(action) {
     try {
-        yield console.log(action.client);
+        //yield console.log(action.client);
         const res = yield call(api.client.add, action.data);
         yield put(addClientSuccess(normalize(res.data,clientSchema)));
         //yield put("ADD_CLIENT_SUCCESS", action);
@@ -36,10 +36,15 @@ export function* watchAddClientType() {
 
 export function* addClientTypeSaga(action) {
     try {
-        yield console.log(action.data);
+        //yield console.log(action.data);
         const res = yield call(api.client_type.add, action.data);
-        yield put(addClientTypeSuccess(normalize(res.data,clientTypeSchema)));
-        //yield put("ADD_CLIENT_SUCCESS", action);
+        yield console.log(res);
+        if (res.success){
+            yield put(addClientTypeSuccess(normalize(res.data,clientTypeSchema)));
+            //yield put("ADD_CLIENT_SUCCESS", action);
+        } else {
+            yield put(addClientTypeFailed(res.msg));
+        }
     } catch (e){
         //yield put({type: "ADD_CLIENT_FAILED", message:(e)});
         yield put(addClientTypeFailed(e.response.data.errors));

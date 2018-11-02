@@ -23,12 +23,12 @@ const ClientTypeList = ({onAdd,onEdit,onDelete,list}) => {
     ];
 
     return (
-        <Table dataSource={list} rowSelection={(e,f)=>{console.log(e,f)}} columns={columns} onChange={} bordered=true/>
+        <Table dataSource={list} columns={columns} bordered/>
     );
 };
 
 ClientTypeList.propTypes = {
-    onAdd: PropTypes.func.isRequired,
+    onAdd: PropTypes.func,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     list: PropTypes.array.isRequired

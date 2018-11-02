@@ -5,7 +5,7 @@ import ClientForm from "../forms/ClientForm";
 
 const Step = Steps.Step;
 const steps = [{title:'Sélectionnez le type de client',content: 'Client type selection'},
-    {title:'Saisissez les details', content: <ClientForm/>},
+    {title:'Saisissez les details', content: <ClientForm visible={true}/>},
     {title: 'Complete',content: 'Last Page'}];
 const Container = styled.div`
     margin: 5 10em;

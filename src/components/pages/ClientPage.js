@@ -10,6 +10,7 @@ import moment from "moment";
 import ClientSteps from "./ClientSteps";
 import ClientTypeForm from "../forms/ClientTypeForm";
 import {allClientTypesSelector} from "../../reducers/clienttypes";
+import ClientTypeList from "./ClientTypeList";
 
 
 const data = [];
@@ -41,13 +42,17 @@ class ClientPage extends React.Component{
 
     };
 
+    editClientType = data => {
+        console.log(data);
+    };
+
     onDelete = (data) => {
         console.log(data);
     };
 
     render(){
         const {formVisible} = this.state;
-        const {match,clients} = this.props;
+        const {match,clients,clientTypes} = this.props;
         return(
            <div>
                {/*<h3>Search Clients</h3>*/}
@@ -56,6 +61,9 @@ class ClientPage extends React.Component{
                {/*<Route path={`${match.url}/new`} render={(props) => <ClientForm {...props} visible={formVisible} submit={this.submit}/>} />*/}
                <Route path={`${match.url}/list`} render={(props) => <ClientList {...props} onDelete={this.onDelete} clients={data}/> } />
                <Route path={`${match.url}/type/new`} render={(props) => <ClientTypeForm {...props} visible={formVisible} submit={this.submitClientType}/> } />
+               <Route path={`${match.url}/type/list`} render={(props) =>
+                   <ClientTypeList {...props} onEdit={this.editClientType} onDelete={this.onDelete} list={clientTypes}/> }
+               />
            </div>
         );
     }
